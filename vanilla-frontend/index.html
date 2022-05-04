@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Vanilla</title>
+</head>
+<body>
+    <h1>VANILLA</h1>
+	<div id="content"></div>
+</body>
+</html>
+
+<script>
+    fetch('/post', {
+		method: 'GET',
+		headers: {
+			'Access-Control-Allow-Origin': '*'
+		}
+	})
+	  .then(res => res.json())
+	  .then(data => {
+		document.getElementById('content').append(JSON.stringify(data));
+	  });
+</script>

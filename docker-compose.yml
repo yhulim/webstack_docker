@@ -1,0 +1,22 @@
+version: "3"
+services:
+  mongodb:
+    image: mongo:5.0
+    ports:
+      - 27017:27017
+    volumes:
+      - /home/yhul/dkr/mongo:/data/db
+  webstack-be:
+    build: ./backend
+    depends_on:
+      - mongodb
+    ports:
+      - 8080:8080
+  webstack-fe:
+    build: 
+      context: ./frontend
+      dockerfile: ./Dockerfile.prod
+    depends_on:
+      - webstack-be
+    ports:
+      - 3001:80
